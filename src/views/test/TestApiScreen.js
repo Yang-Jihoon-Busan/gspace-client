@@ -8,7 +8,7 @@ import env from '../../constants/env';
 const qs = require('qs');
 
 
-const AppComponentScreen = () => {
+const TestApiScreen = () => {
     const { apifetch, simplefetch, dbLog, showSnackbar, openImagePicker } = useContext(AppContext);
     const { me, setAuthInfo, fetchMyinfo, clearAuthInfo } = useContext(AuthContext);
 
@@ -40,7 +40,6 @@ const AppComponentScreen = () => {
 
         simplefetch('get', '/test/error_01.php')
         .catch((error) => {
-            console.log('path2');
             console.error(error)
         })
     }
@@ -51,13 +50,15 @@ const AppComponentScreen = () => {
     }
 
     const handleImageUpload = async () => {
-        openImagePicker(2, asset => {
+        openImagePicker(1, assets => {
+            if (assets.length === 0) return;
+
             const data = new FormData();
             data.append('foo', 'FOO');
             data.append('image', {
-                name: asset.fileName,
-                type: asset.type,
-                uri: asset.uri,
+                name: assets[0].fileName,
+                type: assets[0].type,
+                uri: assets[0].uri,
             });
             
             const options = {
@@ -87,17 +88,17 @@ const AppComponentScreen = () => {
 
     const handleLogin = () => {
         const params = {
-            id: 'user01',
-            password: '1234',
+            email: 'yangji24@nate.com',
+            password: '1234qwer',
         }
-        simplefetch('get', '/auth/login.php', { params })
+        simplefetch('get', '/auth/password_signin.php', { params })
         .then((authinfo) => {
             setAuthInfo(authinfo);
         })
     }
 
     const handleMyinfo = () => {
-        fetchMyinfo();
+        fetchMyinfo()
     }
 
     const handleLogout = () => {
@@ -125,4 +126,4 @@ const styles = StyleSheet.create({
     section: { marginTop: 8 },
 });
 
-export default AppComponentScreen;
+export default TestApiScreen;

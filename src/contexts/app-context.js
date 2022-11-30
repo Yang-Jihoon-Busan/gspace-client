@@ -191,7 +191,6 @@ const AppContextProvider = ({ children }) => {
 				switch (error.code) {
 					case '500': 
 						showAlert(error.message); 
-						// todo:: 영어일 경우, db 로그 및 관리자에게 문의해주세요. 메시지 노출
 						break;
 					case '404': showAlert('존재하지 않는 주소에 요청되었습니다.'); break;
 					case 'null': showAlert(error.message); break;
