@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-
 import colors from '../constants/appcolors';
 import ActivityIndicator from './ActivityIndicator';
 import Text from './Text';
+
 
 export default ({mode, disabled, children, loading, style, textStyle, ...props}) => {
 	if (disabled) {
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	text: {
-		fontFamily: 'Pretendard-SemiBold',
 		fontSize: 16,
 	},
 	

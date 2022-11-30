@@ -270,7 +270,7 @@ const AppContextProvider = ({ children }) => {
 					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16 }}>{alertMessage}</Text>
 					<Button onPress={() => { setAlertOpen(false); }}>확인</Button>
 					<TouchableWithoutFeedback onPress={() => { setAlertOpen(false); }}>
-						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} source={require('../images/ic_close.png')} />
+						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} />
 					</TouchableWithoutFeedback>
 				</View>
 			</AppModal>
@@ -293,7 +293,7 @@ const AppContextProvider = ({ children }) => {
 						}}>{dialogData.first.text || '확인'}</Button></View>
 					</View>
 					<TouchableWithoutFeedback onPress={() => { setDialogOpen(false); }}>
-						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} source={require('../images/ic_close.png')} />
+						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} />
 					</TouchableWithoutFeedback>
 				</View>
 			</AppModal>}

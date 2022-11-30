@@ -1,24 +1,20 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { SafeAreaView, ScrollView, StatusBar, Text, View } from 'react-native';
+import TestAppScreen from './src/views/test/TestAppScreen';
 
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
     return (
         <NavigationContainer>
-            <SafeAreaView>
-                <StatusBar barStyle={'light-content'} />
-                <ScrollView contentInsetAdjustmentBehavior="automatic">
-                    <View>
-                        <Text>hello wolrd.</Text>
-                    </View>
-                </ScrollView>
-            </SafeAreaView>
+            <Stack.Navigator>
+                <Stack.Screen name="Test" component={TestAppScreen} />
+            </Stack.Navigator>
         </NavigationContainer>
         
     );
 };
-
-
 
 export default App;

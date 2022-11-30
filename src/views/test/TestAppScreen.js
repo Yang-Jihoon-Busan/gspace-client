@@ -1,17 +1,16 @@
 import React, { useContext, useState, useEffect, useMemo } from 'react';
-import { View, StyleSheet, ScrollView, Image, TouchableWithoutFeedback, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
 import AppModal from '../../components/AppModal';
 import Button from '../../components/Button';
-import Text from '../../components/Text';
 import { AppContext } from '../../contexts/app-context';
 import cstyles from '../../constants/cstyles';
 import colors from '../../constants/appcolors';
-import { NotificationContext } from '../../contexts/notification-context';
+// import { NotificationContext } from '../../contexts/notification-context';
 
 
-const AppComponentScreen = () => {
+const TestAppScreen = () => {
     const { showSnackbar, showAlert, showDialog, openImagePicker } = useContext(AppContext);
-    const { push } = useContext(NotificationContext);
+    // const { push } = useContext(NotificationContext);
 
     const handleShowSnackbar = () => {
         showSnackbar('hello');
@@ -46,7 +45,7 @@ const AppComponentScreen = () => {
     }
 
     const handlePush = () => {
-        push('title', 'message', { foo: 'FOO', bar: 'BAR' });
+        // push('title', 'message', { foo: 'FOO', bar: 'BAR' });
     }
 
     return (
@@ -77,4 +76,4 @@ const styles = StyleSheet.create({
     section: { marginTop: 8 },
 });
 
-export default AppComponentScreen;
+export default TestAppScreen;
