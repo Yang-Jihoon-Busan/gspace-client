@@ -4,9 +4,8 @@ module.exports = {
     secondary: '#4D6782',
     secondaryLight: '#F1F4F9',
 
-    textPrimary: '#444444',
-    textSecondary: '#999999',
-    textTertiary: '#7E93A8',
+    textPrimary: '#ffffff',
+    textSecondary: '#AAAAAA',
 
     gray50: '#FAFAFA',
     gray100: '#F5F5F5',
@@ -19,11 +18,12 @@ module.exports = {
     gray800: '#424242',
     gray900: '#212121',
 
-    background: '#ffffff',
+    background: '#0F0F0F',
+    card: '#202020',
 
-    borderColor: '#E8ECF5',
+    borderColor: '#212121',
 
-    placeholderColor: '#B2BBC8',
+    placeholderColor: '#7A7A7A',
 
     danger: '#ff3400',
 };

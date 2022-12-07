@@ -14,16 +14,31 @@ import Header from '../../components/Header';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+const RFDateScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+
+    const handleConfirm = () => {
+
+    }
+
+    const handleCancel = () => {}
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'방문 예약 일정'} useHome={false} />
+
+            <View style={{ backgroundColor: colors.card, height: 80, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ fontSize: 18 }}>2022년 10월 23일</Text>
+            </View>
 
             <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 20, paddingBottom: 30 }}>
+                <Text>{'2022년 10월'}</Text>
 
+                {/* Calendar: 하트헬프의 카렌더 라이브러리 사용할 수 있을 것 같은데 확인해보기 */}
+
+                <View style={{ marginTop: 20 }}><Button onPress={handleConfirm}>선택완료</Button></View>
+                <View style={{ marginTop: 10 }}><Button onPress={handleCancel} style={{ backgroundColor: colors.background }} textStyle={{ color: 'white', textDecorationLine: 'underline' }}>취소</Button></View>
             </View>
         </SafeAreaView>
     );
@@ -33,4 +48,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default RFDateScreen;

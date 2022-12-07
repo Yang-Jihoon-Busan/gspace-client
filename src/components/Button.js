@@ -20,8 +20,8 @@ export default ({mode, disabled, children, loading, style, textStyle, ...props})
 		<TouchableOpacity onPress={() => {
 			if (!disabled && !loading && props.onPress) props.onPress();
 		}}>
-			<View style={{...styles.wrapper, borderWidth: mode == 'outlined' ? 1 : 0, backgroundColor: mode == 'outlined' ? 'white' : colors.primary, ...style }}>
-				<Text style={{...styles.text, color: mode == 'outlined' ? colors.primary : 'white', ...textStyle }}>{children}</Text>
+			<View style={{...styles.wrapper, borderWidth: mode == 'outlined' ? 1 : 0, backgroundColor: mode == 'outlined' ? 'white' : 'white', ...style }}>
+				<Text style={{...styles.text, color: mode == 'outlined' ? colors.primary : '#0F0F0F', ...textStyle }}>{children}</Text>
 			</View>
 		</TouchableOpacity>
 	);
@@ -30,16 +30,14 @@ export default ({mode, disabled, children, loading, style, textStyle, ...props})
 
 const styles = StyleSheet.create({
 	wrapper: {
-		height: 48,
+		height: 60,
 		paddingHorizontal: 18,
-		borderColor: colors.primary,
-		borderRadius: 10,
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
 	text: {
-		fontSize: 16,
+		fontSize: 18,
+		fontWeight: 'bold',
 	},
-	
 });

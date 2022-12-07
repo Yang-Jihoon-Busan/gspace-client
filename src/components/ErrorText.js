@@ -8,7 +8,7 @@ const ErrorText = ({ error }) => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', height: 18 }}>
             {!!error && <>
-                <Image style={{ width: 22, height: 18, marginRight: 2 }} source={require('../images/ic_danger.png')} />
+                {/* <Image style={{ width: 22, height: 18, marginRight: 2 }} source={require('../images/ic_danger.png')} /> */}
                 <Text style={[cstyles.errorText]}>{error}</Text>
             </>}
         </View>

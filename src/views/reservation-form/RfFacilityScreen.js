@@ -14,23 +14,43 @@ import Header from '../../components/Header';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+
+
+
+
+const RFFacilityScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+
+    // 서버에서 편의시설 목록 받아서 화면에 뿌릴 것
+
+
+    const handleConfirm = () => {
+
+    }
+
+    const handleCancel = () => {}
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'필터'} useHome={false} />
 
             <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 20, paddingBottom: 30 }}>
 
+                <View style={{ marginTop: 20 }}><Button onPress={handleConfirm}>선택완료</Button></View>
+                <View style={{ marginTop: 10 }}><Button onPress={handleCancel} style={{ backgroundColor: colors.background }} textStyle={{ color: 'white', textDecorationLine: 'underline' }}>취소</Button></View>    
             </View>
+
+            
         </SafeAreaView>
     );
 }
 
 
 const styles = StyleSheet.create({
+    section: { paddingVertical: 24, borderColor: colors.borderColor, borderBottomWidth: 1 },
+    subtitle: { fontSize: 18, marginBottom: 6 },
+    // itemWrapper: { margin }
 });
 
-export default SomeScreen;
+export default RFFacilityScreen;

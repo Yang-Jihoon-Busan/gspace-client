@@ -6,7 +6,7 @@ import colors from '../constants/appcolors';
 
 const Nodata = ({ children, style }) => {
     return (
-        <Text style={{ marginVertical: 20, fontSize: 16, color: colors.textSecondary, ...style }}>{children || '데이터가 없습니다.'}</Text>
+        <Text style={{ marginVertical: 20, fontSize: 15, color: colors.textSecondary, ...style }}>{children || '데이터가 없습니다.'}</Text>
     );
 }
 

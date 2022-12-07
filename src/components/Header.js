@@ -25,17 +25,17 @@ export default function Header({ title, useHome }) {
                 <Text style={{ fontSize: 16 }}>{title}</Text>
             </View>
 
-            {canGoback && <TouchableOpacity onPress={handleBackPress}>
+            {/* {canGoback && <TouchableOpacity onPress={handleBackPress}>
                 <View style={{ padding: 4 }}>
                     <Image source={require('../images/ic_back.png')} style={{ width: 38, height: 38 }} />
                 </View>
-            </TouchableOpacity>}
+            </TouchableOpacity>} */}
 
-            {useHome && <TouchableOpacity onPress={handleHomePress} style={{ marginLeft: 'auto' }}>
+            {/* {useHome && <TouchableOpacity onPress={handleHomePress} style={{ marginLeft: 'auto' }}>
                 <View style={{ padding: 4 }}>
                     <Image source={require('../images/ic_home.png')} style={{ width: 38, height: 38 }} />
                 </View>
-            </TouchableOpacity>}
+            </TouchableOpacity>} */}
             
         </View>
     )
