@@ -2,10 +2,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import SigninScreen from './src/views/auth/SigninScreen';
+import PostingDetailScreen from './src/views/community/PostingDetailScreen';
 import LikeHouseScreen from './src/views/home/LikeHouseScreen';
 import SearchScreen from './src/views/home/SearchScreen';
 import HomeTabs from './src/views/HomeTab';
 import HouseDetailScreen from './src/views/house-detail/HouseDetailScreen';
+import MyInfoEditScreen from './src/views/mypage/MyInfoEditScreen';
+import MyProfileEditScreen from './src/views/mypage/MyProfileEditScreen';
 import RFDateScreen from './src/views/reservation-form/RFDateScreen';
 import RFFacilityScreen from './src/views/reservation-form/RfFacilityScreen';
 import RFTypeScreen from './src/views/reservation-form/RFTypeScreen';
@@ -29,15 +32,18 @@ const App = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
-                // initialRouteName={'LikeHouse'}
+                initialRouteName={'MyInfoEdit'}
             >
-                <Stack.Screen name="Home" component={HomeTabs} />
+                <Stack.Screen name="Main" component={HomeTabs} />
                 <Stack.Screen name="Signin" component={SigninScreen} />
                 <Stack.Screen name="Search" component={SearchScreen} />
 
                 <Stack.Screen name="HouseDetail" component={HouseDetailScreen} />
                 <Stack.Screen name="RoomDetail" component={RoomDetailScreen} />
                 <Stack.Screen name="LikeHouse" component={LikeHouseScreen} />
+                <Stack.Screen name="PostingDetail" component={PostingDetailScreen} />
+                <Stack.Screen name="MyProfileEdit" component={MyProfileEditScreen} />
+                <Stack.Screen name="MyInfoEdit" component={MyInfoEditScreen} />
 
                 <Stack.Screen name="VisitReservationForm" component={VisitReservationFormScreen} />
                 <Stack.Screen name="VisitReservationDone" component={VisitReservationDoneScreen} />

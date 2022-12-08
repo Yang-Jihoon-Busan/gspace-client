@@ -54,6 +54,7 @@ const cstyles = StyleSheet.create({
 	roundIcon: {
 		width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', borderColor: colors.borderColor, borderWidth: 1,
 	},
+	section: { marginVertical: 30 },
 	infoItem: { marginVertical: 10 },
 	infoLabel: { fontSize: 18, color: 'white' },
 	infoContent: { fontSize: 15, color: colors.textSecondary },
