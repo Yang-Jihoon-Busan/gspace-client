@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import colors from '../constants/appcolors';
 import Text from '../components/Text';
 import HomeScreen from './home/HomeScreen';
+import LikeHouseScreen from './home/LikeHouseScreen';
+import CommunityStack from './community/CommunityStack';
 
 
 const TabBar = ({ state, descriptors, navigation }) => {
@@ -30,7 +32,8 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
                 switch (route.name) {
                     case 'Home': title = '홈'; break;
-                    // case 'Task': title = '행동관찰'; break;
+                    case 'LikeHouse': title = '관심매물'; break;
+                    case 'Community': title = '커뮤니티'; break;
                     // case 'Feedback': title = '행동성과'; break;
                     // case 'Inquiry': title = '질의응답'; break;
                     // case 'Notice': title = '공지사항'; break;
@@ -79,17 +82,16 @@ export default function HomeTabs() {
         <View style={{ flex: 1, paddingBottom: insets.bottom, backgroundColor: 'white' }}>
             <Tab.Navigator
                 tabBar={props => <TabBar {...props} />}
-                initialRouteName='Home'
+                initialRouteName='LikeHouse'
                 screenOptions={(route) => ({
                     headerShown: false,
                 })}
             >
                 <Tab.Screen name="Home" component={HomeScreen} />
-                {/* <Tab.Screen name="Info" component={InfoScreen} />
-                <Tab.Screen name="Task" component={TaskScreen} />
-                <Tab.Screen name="Feedback" component={FeedbackTabs} />
-                <Tab.Screen name="Inquiry" component={InquiryScreen} />
-                <Tab.Screen name="Notice" component={NoticeScreen} /> */}
+                <Tab.Screen name="LikeHouse" component={LikeHouseScreen} />
+                <Tab.Screen name="Community" component={CommunityStack} />
+                {/* <Tab.Screen name="Feedback" component={FeedbackTabs} />
+                <Tab.Screen name="Inquiry" component={InquiryScreen} /> */}
             </Tab.Navigator>
         </View>
     );

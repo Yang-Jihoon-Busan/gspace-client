@@ -8,13 +8,11 @@ const cstyles = StyleSheet.create({
 		color: colors.textPrimary,
 	},
 	input: {
-		paddingHorizontal: 16,
-		height: 48,
+		paddingHorizontal: 15,
+		height: 44,
 		color: colors.textPrimary,
-		fontSize: 16,
-		borderColor: '#D2DCE8',
-		borderRadius: 10,
-		borderWidth: 1,
+		fontSize: 15,
+		backgroundColor: '#202020',
 	},
 	labelContainer: {
 		flexDirection: 'row', alignItems: 'baseline'
@@ -56,6 +54,9 @@ const cstyles = StyleSheet.create({
 	roundIcon: {
 		width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', borderColor: colors.borderColor, borderWidth: 1,
 	},
+	infoItem: { marginVertical: 10 },
+	infoLabel: { fontSize: 18, color: 'white' },
+	infoContent: { fontSize: 15, color: colors.textSecondary },
 });
 
 export default cstyles;
