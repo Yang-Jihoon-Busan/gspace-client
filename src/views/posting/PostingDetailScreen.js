@@ -11,20 +11,27 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
+import HorizontalLine from '../../components/HorizontalLine';
 
 
-
-const SomeScreen = ({ route, navigation }) => {
+// 이벤트 또는 공지사항
+const PostingDetailScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'공지사항'} useHome={false} />
 
-            <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
+                <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 10 }}>2022.12.06</Text>
+                <Text style={{ fontSize: 18 }}>[공지] 개인정보 처리방침 일부 변경 관련 안내</Text>
 
-            </View>
+                <HorizontalLine style={{ marginVertical: 20 }} />
+                <Text style={{ color: colors.textSecondary }}>내용</Text>
+                <HorizontalLine style={{ marginVertical: 20 }} />
+
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -33,4 +40,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default PostingDetailScreen;

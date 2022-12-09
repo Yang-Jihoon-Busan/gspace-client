@@ -88,7 +88,7 @@ export default function HomeTabs() {
                     headerShown: false,
                 })}
             >
-                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Main" component={HomeScreen} />
                 <Tab.Screen name="LikeHouse" component={LikeHouseScreen} />
                 <Tab.Screen name="Community" component={CommunityStack} />
                 <Tab.Screen name="Mypage" component={MypageScreen} />

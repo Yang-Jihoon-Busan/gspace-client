@@ -20,8 +20,8 @@ export default ({mode, disabled, children, loading, style, textStyle, ...props})
 		<TouchableOpacity onPress={() => {
 			if (!disabled && !loading && props.onPress) props.onPress();
 		}}>
-			<View style={{...styles.wrapper, borderWidth: mode == 'outlined' ? 1 : 0, backgroundColor: mode == 'outlined' ? 'white' : 'white', ...style }}>
-				<Text style={{...styles.text, color: mode == 'outlined' ? colors.primary : '#0F0F0F', ...textStyle }}>{children}</Text>
+			<View style={{...styles.wrapper, borderColor: 'white', borderWidth: mode == 'outlined' ? 1 : 0, backgroundColor: mode == 'outlined' ? colors.background : 'white', ...style }}>
+				<Text style={{...styles.text, color: mode == 'outlined' ? 'white' : '#0F0F0F', ...textStyle }}>{children}</Text>
 			</View>
 		</TouchableOpacity>
 	);

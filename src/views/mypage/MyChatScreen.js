@@ -14,15 +14,33 @@ import Header from '../../components/Header';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+const MyChatScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+
+    const Item = () => (
+        <View style={{ paddingVertical: 20, paddingHorizontal: 10, borderColor: colors.borderColor, borderBottomWidth: 1 }}>
+            <View style={{ flexDirection: 'row' }}>
+                <Image />
+                <View style={{ flex: 1 }}>
+                    <Text>하우스명</Text>
+                    <Text>오전 00:00</Text>
+                </View>
+                <Image />
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Text style={{ flex: 1 }} numberOfLines={1} ellipsizeMode="tail">안녕하세요~</Text>
+                <Image />
+            </View>
+        </View>
+    );
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'메세지'} useHome={false} />
 
             <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
+                
 
             </View>
         </SafeAreaView>
@@ -33,4 +51,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default MyChatScreen;

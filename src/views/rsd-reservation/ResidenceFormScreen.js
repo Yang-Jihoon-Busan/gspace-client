@@ -16,7 +16,7 @@ import CheckInput from '../../components/CheckInput';
 
 
 
-const RsdReservationFormScreen = ({ route, navigation }) => {
+const ResidenceFormScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     const dimensions = useWindowDimensions();
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
     section: { paddingVertical: 30 },
 });
 
-export default RsdReservationFormScreen;
+export default ResidenceFormScreen;

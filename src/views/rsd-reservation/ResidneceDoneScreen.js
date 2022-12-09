@@ -11,20 +11,30 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
+import ResidenceDetail from './ResidenceDetail';
 
 
-
-const SomeScreen = ({ route, navigation }) => {
+const ResidneceDoneScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'이용예약'} useHome={false} />
 
-            <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
+            <ScrollView style={{ flex: 1 }}>
+                <View style={{ flex: 1, paddingTop: 20, paddingHorizontal: 20, paddingBottom: 30 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{'이용예약 신청이\n완료되었습니다.'}</Text>
+                    <Text style={{ color: colors.textSecondary }}>{'관리자 확인후 예약확정됩니다.\n잠시만 기다려주세요.'}</Text>
 
-            </View>
+                    <View style={{ marginTop: 30 }}><Button>확인</Button></View>
+                    <View style={{ marginTop: 10 }}><Button style={{ backgroundColor: colors.card }} textStyle={{ color: 'white' }}>이용예약확인하기</Button></View>
+
+                    <View>
+                        <ResidenceDetail />
+                    </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -33,4 +43,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default ResidneceDoneScreen;

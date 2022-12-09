@@ -11,19 +11,38 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
+import Pill from '../../components/Pill';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+const MyResidenceScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+
+    const dimensions = useWindowDimensions();
+    const imageHeight = useMemo(() => {
+        return dimensions.width / 3 * 2;
+    }, [ dimensions ]);
+
+    const Reservation = (reservation) => (
+        <View>
+            <Image style={{ width: '100%', height: imageHeight }} />
+            <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 10 }}>2022.12.10</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>G HOUSE01</Text>
+                <Pill label={'계약신청완료'} />
+            </View>
+            <Text style={{ fontSize: 18 }}>Room1</Text>
+            <Text style={{ marginTop: 10, color: colors.textSecondary }}>이용예약일 2022년 11월 28일 14시</Text>
+        </View>
+    );
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'계약관리'} useHome={false} />
 
             <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
-
+                {Reservation(null)}
             </View>
         </SafeAreaView>
     );
@@ -33,4 +52,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default MyResidenceScreen;

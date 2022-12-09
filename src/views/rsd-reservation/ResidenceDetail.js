@@ -17,15 +17,15 @@ import InfoItem from '../../components/InfoItem';
 
 
 
-const VisitReservationDetail = ({ room }) => {
+const ResidenceDetail = ({ reservation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <View style={styles.section}>
-            <SectionTitle>방문예약상세</SectionTitle>
+            <SectionTitle>이용예약상세</SectionTitle>
 
-            <Text style={{ fontSize: 18 }}>신청일 2022년 7월 1일</Text>
-            <Text style={{ fontSize: 18 }}>접수번호 12345</Text>
+            <InfoItem label={'신청일'} content={'2022년 7월 2일'} />
+            <InfoItem label={'접수번호'} content={'2022년 7월 2일'} />
 
             <ImageBackground style={{ padding: 20, marginVertical: 20 }}>
                 <Text style={{ fontSize: 24, fontWeight: 'bold' }}>G House 091 종로</Text>
@@ -33,10 +33,22 @@ const VisitReservationDetail = ({ room }) => {
                 <Text>방문예약일 2022년 7월 2일 오후 2시 00분</Text>
             </ImageBackground>
 
-            <InfoItem label={'방문일'} content={'2022년 7월 2일'} />
-            <InfoItem label={'방문시간'} content={'오후 2시 0분'} />
-            <InfoItem label={'연락처'} content={'01012345678'} />
-            <InfoItem label={'비고'} content={'비고내용'} />
+            <InfoItem label={'이용구분'} content={'단기거주'} />
+            <InfoItem label={'이용예약일'} content={'오후 2시 0분'} />
+            <InfoItem label={'예약인'} content={'홍길동'} />
+            <InfoItem label={'연락처'} content={'0101234568'} />
+
+            <View style={{ marginVertical: 20, paddingVertical: 20, borderColor: colors.borderColor, borderTopWidth: 1 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 18 }}>결제금액</Text>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>55,000원</Text>
+                </View>
+                <Text style={{ marginTop: 4, marginBottom: 20, alignSelf: 'flex-end', color: colors.textSecondary, fontSize: 14, textAlign: 'right' }}>{'계약금 100,000원 + 월세 560,000원\n이후 매달 월세 560,000원씩 4개월청구'}</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 18 }}>결제수단</Text>
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>카드결제</Text>
+                </View>
+            </View>
         </View>
     );
 }
@@ -46,4 +58,4 @@ const styles = StyleSheet.create({
     section: {paddingVertical: 30},
 });
 
-export default VisitReservationDetail;
+export default ResidenceDetail;

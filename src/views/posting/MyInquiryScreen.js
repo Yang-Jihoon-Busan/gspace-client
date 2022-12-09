@@ -11,19 +11,31 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
+import Pill from '../../components/Pill';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+const MyInquiryScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+
+    const Item = (inquiry) => (
+        <View style={{ paddingVertical: 20, borderColor: colors.borderColor, borderBottomWidth: 1 }}>
+            <Text style={{ fontSize: 18}} numberOfLines={1} ellipsizeMode='tail'>질문입니다.</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <Text style={{ fontSize: colors.textSecondary }}>2022.12.29</Text>
+                <Pill label='미답변' />
+            </View>
+        </View>
+    );
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'1:1문의'} useHome={false} />
 
             <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
 
+                <Button>문의하기</Button>
             </View>
         </SafeAreaView>
     );
@@ -33,4 +45,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default MyInquiryScreen;

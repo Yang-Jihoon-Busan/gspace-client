@@ -14,13 +14,13 @@ import Header from '../../components/Header';
 
 
 
-const SomeScreen = ({ route, navigation }) => {
+const ChatScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'header'} useHome={false} />
+            <Header title={'하우스명'} useHome={false} />
 
             <View style={{ flex: 1, paddingTop: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
 
@@ -33,4 +33,4 @@ const SomeScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default SomeScreen;
+export default ChatScreen;

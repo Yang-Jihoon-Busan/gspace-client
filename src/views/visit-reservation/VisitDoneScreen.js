@@ -11,27 +11,26 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
-import RsdReservationDetail from './RsdReservationDetail';
+import VisitDetail from './VisitDetail';
 
 
-const RsdReservationDoneScreen = ({ route, navigation }) => {
+const VisitDoneScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'이용예약'} useHome={false} />
+            <Header title={'방문예약'} useHome={false} />
 
             <ScrollView style={{ flex: 1 }}>
-                <View style={{ flex: 1, paddingTop: 20, paddingHorizontal: 20, paddingBottom: 30 }}>
-                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{'이용예약 신청이\n완료되었습니다.'}</Text>
-                    <Text style={{ color: colors.textSecondary }}>{'관리자 확인후 예약확정됩니다.\n잠시만 기다려주세요.'}</Text>
+                <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 20, paddingBottom: 30 }}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{'방문예약 신청이\n완료되었습니다.'}</Text>
 
                     <View style={{ marginTop: 30 }}><Button>확인</Button></View>
-                    <View style={{ marginTop: 10 }}><Button style={{ backgroundColor: colors.card }} textStyle={{ color: 'white' }}>이용예약확인하기</Button></View>
+                    <View style={{ marginTop: 10 }}><Button style={{ backgroundColor: colors.card }} textStyle={{ color: 'white' }}>방문예약내역확인</Button></View>
 
                     <View>
-                        <RsdReservationDetail />
+                        <VisitDetail />    
                     </View>
                 </View>
             </ScrollView>
@@ -43,4 +42,4 @@ const RsdReservationDoneScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default RsdReservationDoneScreen;
+export default VisitDoneScreen;

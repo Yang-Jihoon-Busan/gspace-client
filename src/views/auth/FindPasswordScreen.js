@@ -11,29 +11,34 @@ import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
-import VisitReservationDetail from './VisitReservationDetail';
+import MobileAuth from './MobileAuth';
 
 
-const VisitReservationDoneScreen = ({ route, navigation }) => {
+
+const FindPasswordScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
-            <Header title={'방문예약'} useHome={false} />
+            <Header title={'비밀번호 찾기'} useHome={false} />
 
-            <ScrollView style={{ flex: 1 }}>
-                <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 20, paddingBottom: 30 }}>
-                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{'방문예약 신청이\n완료되었습니다.'}</Text>
+            <View style={{ flex: 1, paddingTop: 10, paddingHorizontal: 20, paddingBottom: 30 }}>
+                <Text style={{ marginBottom: 30, fontSize: 24, fontWeight: 'bold' }}>비밀번호 찾기</Text>
 
-                    <View style={{ marginTop: 30 }}><Button>확인</Button></View>
-                    <View style={{ marginTop: 10 }}><Button style={{ backgroundColor: colors.card }} textStyle={{ color: 'white' }}>방문예약내역확인</Button></View>
-
-                    <View>
-                        <VisitReservationDetail />    
-                    </View>
+                <Text style={{ fontSize: 18, marginBottom: 10 }}>아이디*</Text>
+                <TextInput
+                    style={[cstyles.input]}
+                    placeholder='이메일형식으로 아이디 입력'
+                    placeholderTextColor={colors.placeholderColor}
+                />
+                
+                <View style={{ marginTop: 30 }}>
+                    <MobileAuth />
                 </View>
-            </ScrollView>
+
+                <View style={{ marginTop: 50 }}><Button>확인</Button></View>
+            </View>
         </SafeAreaView>
     );
 }
@@ -42,4 +47,4 @@ const VisitReservationDoneScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
 });
 
-export default VisitReservationDoneScreen;
+export default FindPasswordScreen;

@@ -15,7 +15,7 @@ import SectionTitle from '../../components/SectionTitle';
 import CheckInput from '../../components/CheckInput';
 
 
-const VisitReservationFormScreen = ({ route, navigation }) => {
+const VisitFormScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     const dimensions = useWindowDimensions();
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
     section: { paddingVertical: 30 },
 });
 
-export default VisitReservationFormScreen;
+export default VisitFormScreen;

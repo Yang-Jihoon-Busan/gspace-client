@@ -12,6 +12,7 @@ import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
 import BlackButton from '../../components/BlackButton';
+import Pill from '../../components/Pill';
 
 
 
@@ -42,7 +43,7 @@ const ReviewDetailScreen = ({ route, navigation }) => {
                 <Image style={{ width: '100%', height: imageHeight }} />
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View style={{ width: 82, height: 24, alignItems: 'center', justifyContent: 'center', borderColor: 'white', borderWidth: 1, borderRadius: 12 }}><Text style={{ fontSize: 13 }}>방문후기</Text></View>
+                    <Pill label={'방문후기'} />
                     <Text>2022.11.30</Text>
                 </View>
 
