@@ -32,7 +32,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                 }
 
                 switch (route.name) {
-                    case 'Home': title = '홈'; break;
+                    case 'Main': title = '홈'; break;
                     case 'LikeHouse': title = '관심매물'; break;
                     case 'Community': title = '커뮤니티'; break;
                     case 'Mypage': title = '마이페이지'; break;
@@ -83,7 +83,7 @@ export default function HomeTabs() {
         <View style={{ flex: 1, paddingBottom: insets.bottom, backgroundColor: 'white' }}>
             <Tab.Navigator
                 tabBar={props => <TabBar {...props} />}
-                initialRouteName='Mypage'
+                initialRouteName='Main'
                 screenOptions={(route) => ({
                     headerShown: false,
                 })}

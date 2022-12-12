@@ -8,7 +8,7 @@ import Text from './Text';
 export default ({mode, disabled, children, loading, style, textStyle, ...props}) => {
 	if (disabled) {
 		return (
-			<View style={{...styles.wrapper, backgroundColor: '#B2BBC8', ...style }}>
+			<View style={{...styles.wrapper, backgroundColor: '#555555', ...style }}>
 				<Text style={{...styles.text, color: 'white', ...textStyle}}>{children}</Text>
 				{loading && <ActivityIndicator style={{ position: 'absolute'}} size="large" />}
 			</View>

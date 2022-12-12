@@ -19,6 +19,8 @@ import HorizontalLine from '../../components/HorizontalLine';
 const SignupAgreementScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
+    const handleNextPress = () => { navigation.navigate('SignupBaseInfo'); }
+
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
             <StatusBar />
@@ -51,7 +53,7 @@ const SignupAgreementScreen = ({ route, navigation }) => {
                     <Text style={styles.itemLabel}>만 14세 이상입니다.</Text>
                 </View>
 
-                <Button>다음</Button>
+                <Button onPress={handleNextPress}>다음</Button>
             </View>
 
             

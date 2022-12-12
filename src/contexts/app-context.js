@@ -169,7 +169,7 @@ const AppContextProvider = ({ children }) => {
 				return Promise.resolve(response.data);
 			}
 			else if (response.result === 'fail') {
-				const error = new Error(response.data);
+				const error = new Error(response.message);
 				error.code = response.code || '500';
 				throw error
 			}
@@ -256,7 +256,7 @@ const AppContextProvider = ({ children }) => {
 				setVisible={setSnack}
 			>
 				<View style={{ alignItems: 'center', paddingVertical: 54, paddingHorizontal: 30 }}>
-					<Text style={{ fontSize: 16 }}>{snackMessage}</Text>
+					<Text style={{ fontSize: 16, color: colors.background }}>{snackMessage}</Text>
 				</View>
 			</AppModal>
 
@@ -266,7 +266,7 @@ const AppContextProvider = ({ children }) => {
 				setVisible={setAlertOpen}
 			>
 				<View style={{ paddingTop: 60, paddingHorizontal: 30, paddingBottom: 30 }}>
-					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16 }}>{alertMessage}</Text>
+					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16, color: colors.background }}>{alertMessage}</Text>
 					<Button onPress={() => { setAlertOpen(false); }}>확인</Button>
 					<TouchableWithoutFeedback onPress={() => { setAlertOpen(false); }}>
 						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} />

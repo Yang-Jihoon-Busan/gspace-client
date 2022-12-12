@@ -4,11 +4,10 @@ import Text from './Text';
 import cstyles from '../constants/cstyles';
 
 
-const ErrorText = ({ error }) => {
+const ErrorText = ({ error, style }) => {
     return (
-        <View style={{ flexDirection: 'row', alignItems: 'center', height: 18 }}>
+        <View style={[{ flexDirection: 'row', alignItems: 'center', height: 18 }, style]}>
             {!!error && <>
-                {/* <Image style={{ width: 22, height: 18, marginRight: 2 }} source={require('../images/ic_danger.png')} /> */}
                 <Text style={[cstyles.errorText]}>{error}</Text>
             </>}
         </View>

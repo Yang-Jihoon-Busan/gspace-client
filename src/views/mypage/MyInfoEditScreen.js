@@ -11,14 +11,21 @@ import Header from '../../components/Header';
 import UnderlineButton from '../../components/UnderlineButton';
 import CheckInput from '../../components/CheckInput';
 import MobileAuth from '../auth/MobileAuth';
+import { AuthContext } from '../../contexts/auth-context';
 
 
 
 const MyInfoEditScreen = ({ route, navigation }) => {
-    const { simplefetch } = useContext(AppContext);
+    const { simplefetch, showSnackbar } = useContext(AppContext);
+    const { me, clearAuthInfo } = useContext(AuthContext);
 
     const [ leaveModalOpen, setLeaveModalOpen ] = useState(false);
     const handleLeaveApp = () => {
+        simplefetch('post', '/auth/leave_app.php')
+        .then(() => { 
+            clearAuthInfo();
+            showSnackbar('탈퇴했습니다.');
+        })
         setLeaveModalOpen(false);
     }
 
@@ -29,10 +36,10 @@ const MyInfoEditScreen = ({ route, navigation }) => {
             <StatusBar />
             <Header title={'내정보수정'} />
 
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 10, paddingHorizontal: 20 }}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 50, paddingHorizontal: 20 }}>
                 <View style={styles.section}>
                     {Label('아이디*')}
-                    <Text style={{ color: colors.textSecondary }}>email@email.com</Text>
+                    <Text style={{ color: colors.textSecondary }}>{me.email}</Text>
                 </View>
 
                 {/* 이렇게 하지 말고 button 을 클릭하면, ChangePasswordScreen 으로 이동 */}

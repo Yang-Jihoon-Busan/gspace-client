@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext, useMemo, useRef } from 'react';
-import { View, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity, TouchableWithoutFeedback, useWindowDimensions, Text as RNText } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Image, StyleSheet, ScrollView, TouchableWithoutFeedback, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
@@ -17,13 +17,16 @@ import SectionTitle from '../../components/SectionTitle';
 
 const MypageScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
+    const { clearAuthInfo } = useContext(AuthContext);
 
     const handleModify = () => {
-
+        navigation.navigate('MyInfoEdit');
     }
 
     const handleSignout = () => {
-        
+        simplefetch('post', '/auth/signout.php')
+        .then(clearAuthInfo)
+        .catch(basicErrorHandler);
     }
 
     const handleToggleRole = () => {
@@ -66,7 +69,7 @@ const MypageScreen = ({ route, navigation }) => {
 
                 <View style={cstyles.section}>
                     <SectionTitle>설정</SectionTitle>
-                    <View style={styles.menu}><Text style={styles.menuText}>설정</Text></View>
+                    <TouchableWithoutFeedback onPress={() => { navigation.navigate('Setting') }} style={styles.menu}><Text style={styles.menuText}>설정</Text></TouchableWithoutFeedback>
                 </View>
 
                 <Button onPress={handleToggleRole} style={{ backgroundColor: colors.background, borderWidth: 1, borderColor: 'white' }} textStyle={{ color: colors.textPrimary }}>임대인모드로 전환하기</Button>

@@ -20,10 +20,9 @@ const AuthContextProvider = ({ children }) => {
 
 	const syncAuth = async () => {
 		const token = await AsyncStorage.getItem('token');
-		const block_auto_login = await AsyncStorage.getItem('block_auto_login');
 
-		if (token && !block_auto_login) await fetchMyinfo();
-		else clearAuthInfo();
+		if (token) await fetchMyinfo();
+		else setMe(null);
 	}
 
 	const setAuthInfo = async (authInfo) => {
@@ -37,26 +36,26 @@ const AuthContextProvider = ({ children }) => {
 	}
 
 	const pairWithAppInstance = async () => {
-		// if (Platform.OS === 'ios') {
-		// 	// Requesting permission
-		// 	const authorizationStatus = await messaging().requestPermission();
-		// }
+		if (Platform.OS === 'ios') {
+			// Requesting permission
+			const authorizationStatus = await messaging().requestPermission();
+		}
 
-		// const token = await messaging().getToken();
-		// if (token) {
-		// 	const body = {
-		// 		fcm_token: token,
-		// 	}
-		// 	await simplefetch('post', '/user/pair_with_app_instance.php', { body });
-		// }
-		// else {
-		// 	console.error('no FCM token.');
-		// 	const data = { 
-		// 		division: 'error', 
-		// 		code: 'no_fcm_token', 
-		// 	};
-		// 	dbLog(data);
-		// }
+		const token = await messaging().getToken();
+		if (token) {
+			const body = {
+				fcm_token: token,
+			}
+			await simplefetch('post', '/user/pair_with_app_instance.php', { body });
+		}
+		else {
+			console.error('no FCM token.');
+			const data = { 
+				division: 'error', 
+				code: 'no_fcm_token', 
+			};
+			dbLog(data);
+		}
 	}
 
 	const clearAuthInfo = async () => {

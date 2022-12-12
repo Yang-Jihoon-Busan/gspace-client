@@ -24,19 +24,19 @@ const SigninScreen = ({ route, navigation }) => {
 
     const { handleChange, handleBlur, handleSubmit, setFieldValue, setFieldTouched, dirty, touched, errors, isValid, values, isSubmitting } = useFormik({
         initialValues: {
-            id: '',
+            email: '',
             password: '',
         },
         validationSchema: yup.object().shape({
-            id: yup.string().required('아이디를 입력해주세요.'),
+            email: yup.string().required('이메일을 입력해주세요.').email('이메일 형식이 맞지 않습니다.'),
             password: yup.string().required('비밀번호를 입력해주세요.'),
         }),
         onSubmit: (values) => {
-            const url = env.production ? '/auth/login.php' : '/auth/login_dev.php';
-            const params = {
-                id: values.id, password: values.password
+            const url = '/auth/password_signin.php';
+            const body = {
+                email: values.email, password: values.password
             };
-            simplefetch('get', url, { params })
+            simplefetch('post', url, { body })
             .then((authinfo) => setAuthInfo(authinfo))
             .then(() => pairWithAppInstance())
             .catch(basicErrorHandler);
@@ -44,7 +44,7 @@ const SigninScreen = ({ route, navigation }) => {
     });
 
     const handleSignup = () => {
-
+        navigation.navigate('SignupAgreement');
     }
 
     const handleNaver = () => {
@@ -93,12 +93,12 @@ const SigninScreen = ({ route, navigation }) => {
                             autoCapitalize={'none'}
                             returnKeyType="next"
                             onSubmitEditing={() => { passwordRef.current.focus(); }}
-                            onChangeText={handleChange('id')}
-                            onBlur={handleBlur('id')}
+                            onChangeText={handleChange('email')}
+                            onBlur={handleBlur('email')}
                             onFocus={() => { setIdFocused(true); }}
-                            value={values.id}
+                            value={values.email}
                         />
-                        <ErrorText error={errors?.id} />
+                        <ErrorText error={touched.email && errors.email} />
                     </View>
                     
                     <View style={{ marginTop: 10 }}>
@@ -117,7 +117,7 @@ const SigninScreen = ({ route, navigation }) => {
                             onFocus={() => { setPasswordFocused(true); }}
                             value={values.password}
                         />
-                        <ErrorText error={errors?.password} />
+                        <ErrorText error={touched.password && errors.password} />
                     </View>
                 </View>
 
