@@ -54,11 +54,11 @@ const MobileAuth = ({ callback, setError }) => {
     }
 
     useInterval(() => {
-        if (remainTime > 0) {
-            setRemainTime(time => time - 1);
-            if (remainTime == 1) {
-                setId(null);
+        if (remainTime > -1) {
+            if (remainTime === 0) {
+                return setId(null);
             }
+            setRemainTime(time => time - 1);
         }
     }, 1000);
 
