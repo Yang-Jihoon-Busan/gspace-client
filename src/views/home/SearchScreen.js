@@ -22,7 +22,7 @@ const SearchScreen = ({ route, navigation }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'검색'} />
 

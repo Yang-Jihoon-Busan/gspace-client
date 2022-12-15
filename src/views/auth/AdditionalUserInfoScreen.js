@@ -47,7 +47,7 @@ const AdditionalUserInfoScreen = ({ route, navigation }) => {
     const Label = (label) => (<Text style={{ marginBottom: 10, fontSize: 18 }}>{label}</Text>);
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'회원가입'} useHome={false} />
 

@@ -56,7 +56,7 @@ const App = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
-                // initialRouteName={'PasswordSignup'}
+                // initialRouteName={'ChangePassword'}
             >
                 {me ? <>
                     <Stack.Screen name="Home" component={HomeTabs} />

@@ -12,11 +12,11 @@ import useInterval from '../../hooks/useInterval';
 const MobileAuth = ({ callback, setError }) => {
     const { simplefetch } = useContext(AppContext);
 
+    const [ state, setState ] = useState('ready');  // ready, sended, authenticated 
     const [ id, setId ] = useState();
     const [ codeInput, setCodeInput ] = useState('');
     const [ remainTime, setRemainTime ] = useState(0);
     const [ mobile, setMobile ] = useState('');
-    const [ authenticated, setAuthenticated ] = useState(false);
 
     const fetchAuthenticationCode = () => {
         if (id) return;
@@ -24,13 +24,10 @@ const MobileAuth = ({ callback, setError }) => {
 
         const body = { mobile };
 
-        simplefetch('post', '/auth/request_mobile_auth.php', { body })
+        simplefetch('post', '/auth/generate_auth_code_bymobile.php', { body })
         .then((data) => {
             setId(data.id);
-            setCodeInput('');
-            setRemainTime(180);
-            setError(null);
-            codeRef.current?.focus();
+            setState('sended');
         })
         .catch(basicErrorHandler);
     }
@@ -40,18 +37,31 @@ const MobileAuth = ({ callback, setError }) => {
         if (remainTime <= 0) return setError('제한시간이 초과되었습니다.');
 
         const body = { id, code: codeInput };
-        simplefetch('post', '/auth/verify_mobile_auth.php', { body })
-        .then((data) => {
-            setAuthenticated(true);
-            setId(null);
-            setMobile(data.mobile);
-            setError(null);
-            setRemainTime(0);
-            setCodeInput('');
-            callback(data.mobile);
+        simplefetch('post', '/auth/verify_auth_code.php', { body })
+        .then(({ is_authenticated }) => {
+            if (is_authenticated) {
+                setState('authenticated');
+            }
+            else setError('인증번호를 잘못 입력하셨습니다.');
         })
         .catch(basicErrorHandler);
     }
+
+    useEffect(() => {
+        if (state === 'sended') {
+            setCodeInput('');
+            setRemainTime(180);
+            setError(null);
+            codeRef.current?.focus();
+        }
+        else if (state === 'authenticated') {
+            setId(null);
+            setError(null);
+            setRemainTime(0);
+            setCodeInput('');
+            callback({ id, mobile });
+        }
+    }, [state]);
 
     useInterval(() => {
         if (remainTime > -1) {
@@ -83,10 +93,10 @@ const MobileAuth = ({ callback, setError }) => {
                     textContentType={'telephoneNumber'}
                     keyboardType="phone-pad"
                     returnKeyType="send"
+                    editable={state === 'ready'}
                     onSubmitEditing={fetchAuthenticationCode}
                     onChangeText={setMobile}
                     value={mobile}
-                    editable={!id && !authenticated}
                 />
                 <Button onPress={fetchAuthenticationCode} mode="outlined" style={{ height: 44, width: 90 }} textStyle={{ fontSize: 15 }}>인증요청</Button>
             </View>
@@ -99,6 +109,7 @@ const MobileAuth = ({ callback, setError }) => {
                         placeholder={'인증번호 입력'}
                         keyboardType="number-pad"
                         returnKeyType="send"
+                        editable={state === 'sended'}
                         onSubmitEditing={confirmCode}
                         onChangeText={setCodeInput}
                         value={codeInput}

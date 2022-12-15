@@ -19,7 +19,7 @@ const PostingListScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     const Item = (posting) => (
-        <View style={{ paddingVertical: 20, borderColor: colors.borderColor, borderBottomWidth: 1 }}>
+        <View style={{ paddingVertical: 20, borderColor: colors.borderColor, borderBottomWidth: 1 }} edges={['top', 'right', 'left']}>
             <View style={{ flexDirection: 'row' }}>
                 <Text style={{ fontSize: 18, marginRight: 5, flex: 1 }} numberOfLines={1} ellipsizeMode='tail'>{'[공지] 개인정보 처리방침 일부 변경관련'}</Text>
                 <Image />

@@ -25,7 +25,7 @@ const ResidenceFormScreen = ({ route, navigation }) => {
     }, [ dimensions ]);
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'이용에약'} />
 

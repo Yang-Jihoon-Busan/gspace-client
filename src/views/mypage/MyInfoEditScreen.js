@@ -12,6 +12,8 @@ import UnderlineButton from '../../components/UnderlineButton';
 import CheckInput from '../../components/CheckInput';
 import MobileAuth from '../auth/MobileAuth';
 import { AuthContext } from '../../contexts/auth-context';
+import ChangePassword from './ChangePassword';
+import Label from '../../components/Label';
 
 
 
@@ -19,6 +21,21 @@ const MyInfoEditScreen = ({ route, navigation }) => {
     const { simplefetch, showSnackbar } = useContext(AppContext);
     const { me, clearAuthInfo } = useContext(AuthContext);
 
+    // change mobile
+    const [ mobileError, setMobileError ] = useState();
+    const [ mobileAuthInfo, setMobileAuthInfo ] = useState();   // {id, mobile}
+    const onMobileAuthenticated = (info) => {
+        setMobileAuthInfo(info);
+    }
+    const handleChangeMobile = () => {
+        const { id, mobile } = mobileAuthInfo;
+        const body = { auth_log_id: id, mobile };
+        simplefetch('post', '/auth/change_mobile_by_authcode.php', { body })
+        .then(() => { showSnackbar('휴대폰번호를 변경했습니다.'); });
+    }
+    // end: change mobile
+
+    // leave app
     const [ leaveModalOpen, setLeaveModalOpen ] = useState(false);
     const handleLeaveApp = () => {
         simplefetch('post', '/auth/leave_app.php')
@@ -28,11 +45,10 @@ const MyInfoEditScreen = ({ route, navigation }) => {
         })
         setLeaveModalOpen(false);
     }
-
-    const Label = (label) => (<Text style={{ marginBottom: 10, fontSize: 18 }}>{label}</Text>);
+    // end: leave app
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'내정보수정'} />
 
@@ -42,33 +58,21 @@ const MyInfoEditScreen = ({ route, navigation }) => {
                     <Text style={{ color: colors.textSecondary }}>{me.email}</Text>
                 </View>
 
-                {/* 이렇게 하지 말고 button 을 클릭하면, ChangePasswordScreen 으로 이동 */}
                 <View style={styles.section}>
-                    {Label('비밀번호 변경')}
-                    <TextInput
-                        style={cstyles.input}
-                        placeholderTextColor={colors.textSecondary}
-                        placeholder={'비밀번호 입력(숫자, 특수기호 포함한 7~15자)'}
-                    />
-                    <TextInput
-                        style={[cstyles.input, { marginTop: 10 }]}
-                        placeholderTextColor={colors.textSecondary}
-                        placeholder={'비밀번호 재입력'}
-                    />
-                    <View style={{ marginTop: 30 }}><Button>비밀번호 변경</Button></View>
+                    <ChangePassword />
                 </View>
 
                 <View style={styles.section}>
                     {Label('이름*')}
-                    <Text style={{ color: colors.textSecondary }}>email@email.com</Text>
+                    <Text style={{ color: colors.textSecondary }}>{me.name || '설정되지 않음'}</Text>
                 </View>
 
                 <View style={styles.section}>
-                    {Label('휴대폰번호*')}
-                    <MobileAuth />
+                    {Label(mobileAuthInfo ? '휴대폰번호* (인증완료)' : '휴대폰번호*', mobileError)}
+                    <MobileAuth callback={onMobileAuthenticated} setError={setMobileError} />
                 </View>
                 
-                <View style={{ marginTop: 30, marginBottom: 30 }}><Button>변경</Button></View>
+                <View style={{ marginTop: 10, marginBottom: 30 }}><Button onPress={handleChangeMobile}>변경</Button></View>
 
                 <UnderlineButton style={{ alignSelf: 'center' }} onPress={() => { setLeaveModalOpen(true); }}>회원탈퇴</UnderlineButton>
             </ScrollView>

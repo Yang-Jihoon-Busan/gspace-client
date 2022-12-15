@@ -24,7 +24,7 @@ const RFDateScreen = ({ route, navigation }) => {
     const handleCancel = () => {}
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'방문 예약 일정'} useHome={false} />
 

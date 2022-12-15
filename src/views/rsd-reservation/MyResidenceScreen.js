@@ -37,7 +37,7 @@ const MyResidenceScreen = ({ route, navigation }) => {
     );
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'계약관리'} useHome={false} />
 

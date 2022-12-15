@@ -22,7 +22,7 @@ const ResidenceDetailScreen = ({ route, navigation }) => {
     
     // ResedenceDetail.js 에서 어떻게든 공통으로 묶어서 사용할 것 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'이용예약상세'} useHome={false} />
 

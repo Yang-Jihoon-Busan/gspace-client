@@ -17,11 +17,7 @@ import SectionTitle from '../../components/SectionTitle';
 
 const MypageScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
-    const { clearAuthInfo } = useContext(AuthContext);
-
-    const handleModify = () => {
-        navigation.navigate('MyInfoEdit');
-    }
+    const { me, clearAuthInfo } = useContext(AuthContext);
 
     const handleSignout = () => {
         simplefetch('post', '/auth/signout.php')
@@ -41,10 +37,10 @@ const MypageScreen = ({ route, navigation }) => {
             <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingVertical: 30, paddingHorizontal: 20, paddingBottom: 50 }}>
                 <View style={{ paddingVertical: 10, alignItems: 'center' }}>
                     <Image style={{ width: 70, height: 70, borderRadius: 35 }} />
-                    <Text style={{ marginTop: 10, marginBottom: 4, fontSize: 18 }}>nickname</Text>
-                    <TouchableWithoutFeedback onPress={handleModify}><Text style={{ fontSize: 13, textDecorationLine: 'underline' }}>변경</Text></TouchableWithoutFeedback>
+                    <Text style={{ marginTop: 10, marginBottom: 6, fontSize: 18 }}>{me.nickname}</Text>
+                    <TouchableWithoutFeedback onPress={() => { navigation.navigate('MyProfileEdit'); }}><Text style={{ fontSize: 13, textDecorationLine: 'underline' }}>변경</Text></TouchableWithoutFeedback>
 
-                    <View style={{ alignSelf: 'stretch', marginTop: 20 }}><Button onPress={handleModify}>내정보수정</Button></View>
+                    <View style={{ alignSelf: 'stretch', marginTop: 20 }}><Button onPress={() => { navigation.navigate('MyInfoEdit'); }}>내정보수정</Button></View>
                 </View>
 
                 <View style={cstyles.section}>

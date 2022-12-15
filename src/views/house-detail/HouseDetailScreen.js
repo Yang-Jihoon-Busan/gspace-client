@@ -22,7 +22,7 @@ const HouseDetailScreen = ({ route, navigation }) => {
     const { simplefetch } = useContext(AppContext);
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'하우스상세'} useHome={false} />
 

@@ -31,7 +31,7 @@ const RFFacilityScreen = ({ route, navigation }) => {
     const handleCancel = () => {}
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'필터'} useHome={false} />
 

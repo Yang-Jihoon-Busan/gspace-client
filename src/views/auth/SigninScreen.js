@@ -64,11 +64,11 @@ const SigninScreen = ({ route, navigation }) => {
     }
 
     const handleFindId = () => {
-
+        navigation.navigate('FindId');
     }
 
     const handleFindPassword = () => {
-        
+        navigation.navigate('FindPassword');
     }
 
     // focus
@@ -78,7 +78,7 @@ const SigninScreen = ({ route, navigation }) => {
     const passwordRef = useRef();
 
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
 
             <View style={{ padding: 20 }}>

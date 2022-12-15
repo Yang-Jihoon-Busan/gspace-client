@@ -9,11 +9,11 @@ import { AppContext } from '../../contexts/app-context';
 import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
-import ErrorText from '../../components/ErrorText';
 import Header from '../../components/Header';
 import MobileAuth from './MobileAuth';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import Label from '../../components/Label';
 
 
 const PasswordSignupScreen = ({ route, navigation }) => {
@@ -71,7 +71,7 @@ const PasswordSignupScreen = ({ route, navigation }) => {
         .catch(basicErrorHandler);
     }
 
-    const onMobileAuthenticated = (mobile) => {
+    const onMobileAuthenticated = ({id, mobile}) => {
         setFieldValue('mobile', mobile);
         setFieldValue('mobileAuthenticated', true);
     }
@@ -79,15 +79,8 @@ const PasswordSignupScreen = ({ route, navigation }) => {
     const rePasswordRef = useRef();
     const nameRef = useRef();
 
-    const Label = (label, error) => (
-        <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
-            <Text style={{ marginBottom: 10, fontSize: 18 }}>{label}</Text>
-            <ErrorText error={error} />
-        </View>
-    );
-
     return (
-        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
             <StatusBar />
             <Header title={'회원가입'} useHome={false} />
 
