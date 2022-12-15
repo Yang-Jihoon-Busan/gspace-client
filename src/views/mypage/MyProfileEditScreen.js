@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useContext, useMemo, useRef } from 'react';
 import { View, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity, TouchableWithoutFeedback, useWindowDimensions, Text as RNText } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import RNPickerSelect from 'react-native-picker-select';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import colors from '../../constants/appcolors';
 import cstyles from '../../constants/cstyles';
-import env from '../../constants/env';
 import { AppContext } from '../../contexts/app-context';
 import { AuthContext } from '../../contexts/auth-context';
 import { basicErrorHandler } from '../../config/http-error-handler';
 import StatusBar from '../../components/StatusBar';
 import Header from '../../components/Header';
+import AppModal from '../../components/AppModal';
 
 
 
@@ -32,31 +31,59 @@ const MyProfileEditScreen = ({ route, navigation }) => {
         .catch(basicErrorHandler);
     }
     
-    const [ setting, setSetting ] = useState('photo_update');
-    const handleSettingDone = () => {
-        if (setting === 'photo_update') {
-            setTimeout(onPhotoPress, 300);
-        }
-        else if (setting === 'no_photo') {
-
-        }
-    }
+    // profile image
+    const [ menuModalOpen, setMenuModalOpen ] = useState(false);
     const [ photoPicked, setPhotoPicked ] = useState();
-    const onPhotoPress = () => {
-        openImagePicker(1, assets => {
-            console.log(assets);
-            setPhotoPicked(assets[0]);
-        });
+    const [ emptyPhotoFlag, setEmptyPhotoFlag ] = useState(false);
+
+    const handlePhotoUpdate = () => {
+        setMenuModalOpen(false);
+        setTimeout(() => {
+            openImagePicker(1, assets => {
+                setPhotoPicked(assets[0]);
+                setEmptyPhotoFlag(false);
+            });    
+        }, 500);
     }
+    const handlePhotoBase = () => {
+        setMenuModalOpen(false);
+        setPhotoPicked(null);
+        setEmptyPhotoFlag(true);
+    }
+    // end: profile image
 
     const handleModify = async () => {
-        if (nickname !== me.nickname) {
-            const body = { nickname };
-            await simplefetch('post', '/user/modify_nickname.php', { body })
-            .catch(basicErrorHandler)
+        try {
+            if (nickname !== me.nickname) {
+                const body = { nickname };
+                await simplefetch('post', '/user/modify_nickname.php', { body })
+            }
+            
+            if (photoPicked) {
+                const data = new FormData();
+                data.append('image', {
+                    name: photoPicked.fileName,
+                    type: photoPicked.type,
+                    uri: photoPicked.uri,
+                });
+                const options = {
+                    division: 'form',
+                    body: data,
+                };
+                await simplefetch('post', '/user/update_my_profile_image.php', options)
+            }
+            else if (emptyPhotoFlag) {
+                await simplefetch('post', '/user/remove_my_profile_image.php')
+            }
+    
+            await fetchMyinfo();
+            showSnackbar('수정했습니다.');
+            setPhotoPicked(null);
+            setEmptyPhotoFlag(false);
         }
-        // TODO: 프로필 이미지
-        showSnackbar('수정했습니다.');
+        catch(error) {
+            basicErrorHandler(error);
+        }
     }
 
     return (
@@ -66,9 +93,14 @@ const MyProfileEditScreen = ({ route, navigation }) => {
 
             <View style={{ flex: 1, paddingVertical: 40, paddingHorizontal: 20 }}>
                 <View style={{ alignSelf: 'center', width: 90, height: 90 }}>
-                    <Image style={{ width: 90, height: 90, borderRadius: 45, marginHorizontal: 'auto' }} />
-                    <View style={{ width: 30, height: 30, position: 'absolute', right: -6, bottom: -6 }}>
-                        <RNPickerSelect
+                    <Image 
+                        style={{ width: 90, height: 90, borderRadius: 45, marginHorizontal: 'auto' }}
+                        source={{ uri: photoPicked ? photoPicked.uri : me.image }}
+                    />
+                    <TouchableOpacity onPress={() => { setMenuModalOpen(true); }} style={{ width: 30, height: 30, position: 'absolute', right: -6, bottom: -6, backgroundColor: 'blue' }}>
+                        <Text>here</Text>
+
+                        {/* <RNPickerSelect
                             onValueChange={(value) => {
                                 if (value === 'photo_update') onPhotoPress();
                             }}
@@ -80,8 +112,24 @@ const MyProfileEditScreen = ({ route, navigation }) => {
                             onDonePress={handleSettingDone}
                         >
                             <Text style={{ backgroundColor: 'blue' }}>here</Text>
-                        </RNPickerSelect>
-                    </View>
+                        </RNPickerSelect> */}
+                    </TouchableOpacity>
+
+                    <AppModal
+                        visible={menuModalOpen}
+                        setVisible={setMenuModalOpen}
+                    >
+                        <View style={{ paddingHorizontal: 30, paddingVertical: 30, flexDirection: 'row' }}>
+                            <View 
+                                style={{ flex: 1, marginRight: 10 }}><Button mode="outlined" style={{ borderColor: '#D2DCE8' }}
+                                onPress={handlePhotoUpdate}
+                            >사진선택</Button></View>
+                            <View 
+                                style={{ flex: 1, marginRight: 10 }}><Button mode="outlined" style={{ borderColor: '#D2DCE8' }}
+                                onPress={handlePhotoBase}
+                            >기본이미지</Button></View>
+                        </View>
+                    </AppModal>
                 </View>
 
                 <View style={{ marginVertical: 30, flexDirection: 'row' }}>
@@ -102,6 +150,8 @@ const MyProfileEditScreen = ({ route, navigation }) => {
 
                 <Button onPress={handleModify}>수정</Button>
             </View>
+
+			
         </SafeAreaView>
     );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Modal, TouchableWithoutFeedback } from 'react-native';
+import colors from '../constants/appcolors';
 
 
 const AppModal = ({
@@ -19,11 +20,11 @@ const AppModal = ({
 			<TouchableWithoutFeedback onPress={() => { 
 				if (!blockCancel) setVisible(false);
 			}}>
-				<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center' }}>
+				<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center' }}>
 					<TouchableWithoutFeedback onPress={() => {
 						// nothing
 					}}>
-						<View style={[{ backgroundColor: 'white', marginHorizontal: 20, borderRadius: 10, }]}>
+						<View style={[{ backgroundColor: colors.background, marginHorizontal: 20, borderRadius: 10, }]}>
 							{children}
 						</View>
 					</TouchableWithoutFeedback>

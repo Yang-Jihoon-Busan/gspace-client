@@ -208,7 +208,8 @@ const AppContextProvider = ({ children }) => {
 					const data = { 
 						division: 'error', 
 						code: 'app', 
-						message: error.message
+						message: error.message,
+						stack: error.stack,
 					};
 					dbLog(data);
 				}
@@ -256,7 +257,7 @@ const AppContextProvider = ({ children }) => {
 				setVisible={setSnack}
 			>
 				<View style={{ alignItems: 'center', paddingVertical: 54, paddingHorizontal: 30 }}>
-					<Text style={{ fontSize: 16, color: colors.background }}>{snackMessage}</Text>
+					<Text style={{ fontSize: 16, color: colors.textPrimary }}>{snackMessage}</Text>
 				</View>
 			</AppModal>
 
@@ -266,7 +267,7 @@ const AppContextProvider = ({ children }) => {
 				setVisible={setAlertOpen}
 			>
 				<View style={{ paddingTop: 60, paddingHorizontal: 30, paddingBottom: 30 }}>
-					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16, color: colors.background }}>{alertMessage}</Text>
+					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16, color: colors.textPrimary }}>{alertMessage}</Text>
 					<Button onPress={() => { setAlertOpen(false); }}>확인</Button>
 					<TouchableWithoutFeedback onPress={() => { setAlertOpen(false); }}>
 						<Image style={{ width: 32, height: 32, right: 11, top: 11, position: 'absolute' }} />
@@ -282,7 +283,7 @@ const AppContextProvider = ({ children }) => {
 				<View style={{ paddingTop: 60, paddingHorizontal: 30, paddingBottom: 30 }}>
 					<Text style={{ marginBottom: 40, alignSelf: 'center', fontSize: 16 }}>{dialogData.message}</Text>
 					<View style={{ flexDirection: 'row' }}>
-						<View style={{ flex: 1, marginRight: 10 }}><Button mode="outlined" style={{ borderColor: '#D2DCE8' }} textStyle={{ color: '#555555', fontWeight: 'bold' }} onPress={() => {
+						<View style={{ flex: 1, marginRight: 10 }}><Button mode="outlined" style={{ borderColor: '#D2DCE8' }} textStyle={{ color: colors.textPrimary, fontWeight: 'bold' }} onPress={() => {
 							setDialogOpen(false);
 							if (dialogData.second?.onPress) dialogData.second.onPress();
 						}}>{dialogData.second?.text || '취소'}</Button></View>
@@ -299,7 +300,7 @@ const AppContextProvider = ({ children }) => {
 
 			{/* loading */}
 			<Modal visible={loading} setVisible={setLoading} transparent={true}>
-				<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center' }}>
+				<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center' }}>
 					<Loading />
 				</View>
 			</Modal>
@@ -311,16 +312,16 @@ const AppContextProvider = ({ children }) => {
 				onRequestClose={() => { setImagePickerModalOpen(false); }}
 			>
 				<TouchableWithoutFeedback onPress={() => { setImagePickerModalOpen(false); }}>
-					<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center' }}>
+					<View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)', justifyContent: 'center' }}>
 						<TouchableWithoutFeedback onPress={() => {
 							// nothing
 						}}>
-							<View style={[{ backgroundColor: 'white', marginHorizontal: 22, paddingTop: 30, paddingBottom: 30, paddingHorizontal: 30, borderRadius: 10, }]}>
+							<View style={[{ backgroundColor: colors.background, marginHorizontal: 22, paddingTop: 30, paddingBottom: 30, paddingHorizontal: 30, borderRadius: 10, }]}>
 								<Text style={{ fontSize: 14 }}>이미지를 가져올 방법을 선택하세요.</Text>
 
 								<View style={{ marginTop: 24, flexDirection: 'row' }}>
 									<View style={{ flex: 1, marginRight: 10 }}><Button style={{ borderRadius: 5, height: 40 }} textStyle={{ fontSize: 14 }} onPress={() => { handlePhotoPress('gallery') }}>갤러리</Button></View>
-									<View style={{ flex: 1 }}><Button style={{ borderRadius: 5, height: 40, backgroundColor: colors.gray600 }} textStyle={{ fontSize: 14 }} onPress={() => { handlePhotoPress('camera') }}>카메라</Button></View>
+									<View style={{ flex: 1 }}><Button style={{ borderRadius: 5, height: 40 }} textStyle={{ fontSize: 14 }} onPress={() => { handlePhotoPress('camera') }}>카메라</Button></View>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>

@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
 import { Image } from 'react-native';
 
-const AppImage = ({ file, maxWidth, ...props }) => {
+const AppImage = ({ fileinfo, maxWidth, style, ...props }) => {
     const dimensions = useMemo(() => {
-        const width = Math.min(file.ft_width, maxWidth);
-        const height = width * file.ft_height / file.ft_width;
+        const width = Math.min(fileinfo.width, maxWidth);
+        const height = width * fileinfo.height / fileinfo.width;
         return { width, height };
     }, [ maxWidth ]);
 
     return (
-        <Image source={{ uri: file.ft_download_url }} style={{ width: dimensions.width, height: dimensions.height }} {...props} />
+        <Image source={{ uri: fileinfo.download_url }} style={[{ width: dimensions.width, height: dimensions.height }, style ]} {...props} />
     );
 }
 

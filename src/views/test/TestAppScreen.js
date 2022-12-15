@@ -71,7 +71,7 @@ const TestAppScreen = () => {
                 <View style={styles.section}><Button onPress={handlePush}>local notification</Button></View>
 
                 <AppModal visible={appmodalOpen} setVisible={setAppmodalOpen} blockCancel={false}>
-                    <Text>very basic modal</Text>
+                    <Text style={{ color: 'white' }}>very basic modal</Text>
                 </AppModal>
             </ScrollView>
         </SafeAreaView>

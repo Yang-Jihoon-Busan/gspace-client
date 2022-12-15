@@ -28,7 +28,18 @@ const Item = ({ posting }) => {
 }
 
 const FaqScreen = ({ route, navigation }) => {
-    const { simplefetch } = useContext(AppContext);
+    const [ trigger, setTrigger ] = useState();
+    const [ page, setPage ] = useState(1);
+
+    const { loading, fetched, rows } = useSearchPosting(page, setPage, 'notice', trigger);
+
+    const onEndReacehd = () => {
+        setPage(page => page + 1);
+    }
+
+    const handleRefresh = () => {
+        setTrigger(new Date().getTime());
+    }
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }} edges={['top', 'right', 'left']}>
